@@ -22,8 +22,7 @@ env:
   CX_HIGH: 1000
   CX_MEDIUM: 1000
   CX_LOW: 1000
-  CX_INCREMENTAL: "false"
-  #CX_REPORTPDF:  checkmarx.pdf
+  CX_INCREMENTAL: ""
 
 jobs:
   checkmarx-cli-scan:
@@ -42,8 +41,8 @@ jobs:
            
     - uses: actions/checkout@v2
     - name: Run Checkmarx Scan
-      #run: C:\CxConsole\runCxConsole.cmd Scan -CxServer $env:CX_SERVER -CxUser $env:CX_USER -CxPassword $env:CX_PASSWORD -ProjectName "$env:CX_TEAM/$env:GITHUB_REPOSITORY" -preset $env:CX_PRESET -LocationType folder -LocationPath $env:GITHUB_WORKSPACE -SASTHigh $env:CX_HIGH -SASTMedium $env:CX_MEDIUM -SASTLow $env:CX_LOW -ReportXML $env:GITHUB_WORKSPACE\\checkmarxResults.xml -ReportPDF $env:GITHUB_WORKSPACE\\checkmarxResults.pdf -Comment "git $env:GITHUB_REFH@$env:GITHUB_SHA" -Incremental $env:CX_INCREMENTAL -verbose
-      run: C:\CxConsole\runCxConsole.cmd Scan -CxServer $env:CX_SERVER -CxUser $env:CX_USER -CxPassword $env:CX_PASSWORD -ProjectName "$env:CX_TEAM/$env:CX_PROJECT" -preset $env:CX_PRESET -LocationType folder -LocationPath $env:GITHUB_WORKSPACE -SASTHigh $env:CX_HIGH -SASTMedium $env:CX_MEDIUM -SASTLow $env:CX_LOW -ReportXML $env:GITHUB_WORKSPACE\\checkmarxResults.xml -ReportPDF $env:GITHUB_WORKSPACE\\checkmarxResults.pdf -Comment "git $env:GITHUB_REFH@$env:GITHUB_SHA" -Incremental $env:CX_INCREMENTAL -verbose 
+      #run: C:\CxConsole\runCxConsole.cmd Scan -CxServer $env:CX_SERVER -CxUser $env:CX_USER -CxPassword $env:CX_PASSWORD -ProjectName "$env:CX_TEAM/$env:GITHUB_REPOSITORY" -preset $env:CX_PRESET -LocationType folder -LocationPath $env:GITHUB_WORKSPACE -SASTHigh $env:CX_HIGH -SASTMedium $env:CX_MEDIUM -SASTLow $env:CX_LOW -ReportXML $env:GITHUB_WORKSPACE\\checkmarxResults.xml -ReportPDF $env:GITHUB_WORKSPACE\\checkmarxResults.pdf -Comment "git $env:GITHUB_REFH@$env:GITHUB_SHA" -verbose $env:CX_INCREMENTAL
+      run: C:\CxConsole\runCxConsole.cmd Scan -CxServer $env:CX_SERVER -CxUser $env:CX_USER -CxPassword $env:CX_PASSWORD -ProjectName "$env:CX_TEAM/$env:CX_PROJECT" -preset $env:CX_PRESET -LocationType folder -LocationPath $env:GITHUB_WORKSPACE -SASTHigh $env:CX_HIGH -SASTMedium $env:CX_MEDIUM -SASTLow $env:CX_LOW -ReportXML $env:GITHUB_WORKSPACE\\checkmarxResults.xml -ReportPDF $env:GITHUB_WORKSPACE\\checkmarxResults.pdf -Comment "git $env:GITHUB_REFH@$env:GITHUB_SHA" -verbose $env:CX_INCREMENTAL
       shell: powershell
     - name: Upload PDF Artifact
       uses: actions/upload-artifact@master
