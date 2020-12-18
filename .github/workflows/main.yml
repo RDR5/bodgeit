@@ -9,7 +9,7 @@ on:
     branches:
       - master
       - main
-	  
+
 env:
   CX_SERVER: ${{ secrets.CX_SERVER }}
   #CX_SERVER: https://checkmarx.app.medcity.net
